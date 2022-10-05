@@ -1,14 +1,14 @@
 <template>
-  <div class="forecast-list">
+  <section class="forecast">
     <forecast-list-item
-      v-for="(item, index) in daysTemp"
+      v-for="(item, index) in forecastWeather"
       :key="index"
       :date="item.date"
-      :temp-celsius="item.temp"
+      :temperature-celsius="item.temp"
       :show-celsius="showCelsius"
       :image="image"
     />    
-  </div>
+  </section>
 </template>
 
 <script>
@@ -23,9 +23,9 @@ export default {
     return {
       image:LightCloud,
       showCelsius:true,
-      daysTemp:[
+      forecastWeather:[
         {date: new Date(), temp: {max:'16', min:'11'} },
-        {date: new Date(), temp: {max:'16', min:'11'} },
+        {date: new Date(), temp: {max:'22', min:'11'} },
         {date: new Date(), temp: {max:'16', min:'11'} },
         {date: new Date(), temp: {max:'16', min:'11'} },
         {date: new Date(), temp: {max:'16', min:'11'} },
@@ -35,21 +35,14 @@ export default {
 }
 </script>
 
-<style>
-  @media (max-width: 768px) { 
-    .forecast-list{
-      width: fit-content;
-      display: grid;
-      grid-template-columns: repeat(2, max-content);
-      gap:26px;
-    }
+<style scoped>
+  .forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 7.5rem);
+    justify-content: center;
+    gap:1.39rem;
   }
-  @media (min-width: 769px) { 
-    .forecast-list {
-      width: fit-content;
-      display: grid;
-      grid-template-columns: repeat(5, max-content);
-      gap:26px;
-    }
+  .forecast > *{
+    flex:1;
   }
 </style>

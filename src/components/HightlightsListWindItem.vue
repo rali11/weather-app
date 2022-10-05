@@ -3,7 +3,6 @@
     title="Wind status"
     :value="value"
     value-measure="mph"
-    :show-footer="showFooter"
   >
     <div class="wind-footer">
       <span 

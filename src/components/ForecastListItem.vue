@@ -1,17 +1,25 @@
 <template>
-  <article class="card-forecast">
-    <header class="card-forecast__header">
-      {{ longDate }}
+  <article class="forecast-card">
+    <header>
+      <h2 class="forecast-card__title">
+        {{ longDate }}
+      </h2>
     </header>
-    <img 
-      class="card-forecast__body-picture"
-      :src="image" 
-      alt=""
-    >
-    <ul class="card-forecast__footer">
-      <li>{{ maxTemperatureFormat }}</li>
-      <li>{{ minTemperatureFormat }}</li>
-    </ul>
+    <main class="forecast-card__main">
+      <img 
+        class="forecast-card__img"
+        :src="image" 
+        :alt="imageAlt"
+      >
+      <ul class="forecast-card__temperatures">
+        <li>
+          {{ maxTemperatureFormat }}
+        </li>
+        <li class="forecast-card--muted">
+          {{ minTemperatureFormat }}
+        </li>
+      </ul>
+    </main>     
   </article>
 </template>
 
@@ -22,11 +30,11 @@ export default {
       default:()=>{},
       type:Date
     },
-    tempCelsius:{
+    temperatureCelsius:{
       default:()=>{},
       type:Object
     },
-    tempFarenheit:{
+    temperatureFarenheit:{
       default:()=>{},
       type:Object
     },
@@ -37,6 +45,10 @@ export default {
     image: {
       default: '',
       type:String
+    },
+    imageAlt: {
+      default: 'draw description of the weather',
+      type:String
     }
   },
   computed:{
@@ -44,10 +56,10 @@ export default {
       return this.showCelsius ? 'C' : 'F';
     },
     maxTemperature(){
-      return this.showCelsius ? this.tempCelsius.max : this.tempFarenheit.max;
+      return this.showCelsius ? this.temperatureCelsius.max : this.tempFarenheit.max;
     },
     minTemperature(){
-      return this.showCelsius ? this.tempCelsius.min : this.tempFarenheit.min;
+      return this.showCelsius ? this.temperatureCelsius.min : this.tempFarenheit.min;
     },
     maxTemperatureFormat(){
       return `${this.maxTemperature}°${this.measureTemp}`;
@@ -63,30 +75,36 @@ export default {
 </script>
 
 <style scoped>
-  .card-forecast {
+  .forecast-card {
     background-color: #1E213A;
-    width:120px;
-    height: 177px;
-    padding:18px 0;    
+    height: 11.4rem;
+    padding:1rem 0;    
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    gap: 1rem;
     color: #E7E7EB;    
     text-align: center;   
     font-size: 1rem;
     overflow: hidden;
   }
-  .card-forecast__header {
+  .forecast-card__title {
     text-transform: capitalize;
+    font-size:1rem;
+    font-weight: 500;
+    margin:0;
   }  
-  .card-forecast__body-picture {
-    width: 66.51px;
-    height: 62px;
-    margin-bottom: 31px;
-    margin-top:9px;
+  .forecast-card__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1.8rem;
   }
-  .card-forecast__footer {
+  .forecast-card__img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .forecast-card__temperatures {
     margin:0;
     padding: 0;
     display: flex;
@@ -94,7 +112,7 @@ export default {
     gap: 16px;
     list-style: none;
   }  
-  .card-forecast__footer > *:nth-child(2){
+  .forecast-card--muted {
     color:#A09FB1;
   }
 </style>

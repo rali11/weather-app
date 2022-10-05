@@ -1,42 +1,49 @@
 <template>
-  <div>
-    <h2 class="title">
+  <section class="hightlights">
+    <h2 class="hightlights__title">
       Today's Hightlights
-    </h2>
-    <div class="container">    
-      <hightlights-list-wind-item 
-        :value="wind"
-        :deg="degWind"
+    </h2>        
+    <hightlights-list-wind-item 
+      :deg="degWind"
+      :value="wind"
+    />
+    <hightlights-list-item 
+      title="Humidity"
+      :value="humidity"
+      value-measure="%"
+    >
+      <base-thermometer-progress-bar 
+        :percent="humidity"
       />
-      <hightlights-list-humidity-item
-        :percent-humidity="humidity"
-      />
-      <hightlights-list-item
-        title="Visibility"
-        :value="visibility"
-        :value-round="1"
-        value-measure=" miles"
-        :show-footer="false"
-      />
-      <hightlights-list-item
-        title="Air Pressure"
-        :value="airPressure"
-        value-measure=" mb"
-        :show-footer="false"
-      />
-    </div>
-  </div>
+    </hightlights-list-item>
+    <hightlights-list-item
+      title="Visibility"
+      :value="visibility"
+      :decimal="1"
+      value-measure=" miles" 
+    />
+    <hightlights-list-item
+      title="Air Pressure"
+      :value="airPressure"
+      value-measure=" mb" 
+    />
+  </section>
 </template>
 
 <script>
-import HightlightsListHumidityItem from './HightlightsListHumidityItem.vue'
-import HightlightsListWindItem from './HightlightsListWindItem.vue'
+import BaseThermometerProgressBar from './BaseThermometerProgressBar.vue'
 import HightlightsListItem from './HightlightsListItem.vue'
+import HightlightsListWindItem from './HightlightsListWindItem.vue'
+
 export default {
-  components: { HightlightsListWindItem, HightlightsListHumidityItem, HightlightsListItem },
+  components: {
+    BaseThermometerProgressBar, 
+    HightlightsListItem, 
+    HightlightsListWindItem 
+  },
   data(){
     return {
-      humidity:87,
+      humidity:84,
       wind:7,
       visibility:6.4,
       airPressure:998,
@@ -47,25 +54,15 @@ export default {
 </script>
 
 <style scoped>
-  .title {
-    color: #E7E7EB;
-    margin-bottom:30px;
+  .hightlights {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 20rem);
+    gap:3rem;
   }
-  @media (max-width: 768px) {
-    .container {
-      display: grid;
-      grid-template-columns: 1fr;
-      width: fit-content;
-      gap: 32px;
-    }
+  .hightlights__title {
+    color:#E7E7EB;
+    grid-column: 1 / -1;
+    margin-bottom:-1rem;
   }
-  @media (min-width: 769px) {
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: fit-content;
-      gap: 48px;
-    }
-  }
-  
 </style>

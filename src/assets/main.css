@@ -1,16 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap');
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {  
+  --side-bar-width:459px;  
+  --main-container-width:700px;
 }
 
-#app {
-  font-family: 'Raleway', sans-serif;
+@media (max-width: 575.98px) {  
+  :root {  
+    --side-bar-width:100vw;
+    --main-container-width:320px;
+  }
 }
 
-body {
-  margin:0;
-  padding: 0;
+@media (min-width: 576px) and (max-width: 778.98px) {
+  :root {
+    --side-bar-width:100vw;    
+    --main-container-width:420px;
+  }
 }
+
+@media (min-width:779px) and (max-width: 1091.98px) {
+  :root {
+    --main-container-width:auto;
+  }
+} 

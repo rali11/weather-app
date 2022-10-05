@@ -1,13 +1,19 @@
 <template>
   <div class="thermometer">
     <ul class="thermometer__scale">
-      <li>0</li>
-      <li>50</li>
-      <li>100</li>
+      <li class="thermometer__scale-item">
+        0
+      </li>
+      <li class="thermometer__scale-item">
+        50
+      </li>
+      <li class="thermometer__scale-item">
+        100
+      </li>
     </ul>
     <div class="thermometer__progress">
       <div 
-        :style="widthClass"
+        :style="fulfilledProgress"
         class="thermometer__progress-bar"
       />
     </div>
@@ -50,7 +56,7 @@ export default {
     parsePercent(){
       return 229*(this.percent/100);
     },
-    widthClass(){
+    fulfilledProgress(){
       return {width: `${this.styleCss.width}%`};
     }
   }
@@ -59,31 +65,33 @@ export default {
 
 <style scoped>
    .thermometer {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    gap: 0;
-    width: fit-content;
+    color:#A09FB1;    
+    font-size: .8rem;      
+    font-weight: 700;
   }
   .thermometer__scale {
-    font-size: 12px;    
-    font-weight: 700;
-    color:#A09FB1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 229px;
-    margin: 2px auto;   
+    margin: 2px 0;   
     padding: 0;
-    height: auto;
-    list-style: none;
+    list-style: none;    
+    text-align: center;
+  }
+  .thermometer__scale-item {
+    flex: 1;
+  }
+  .thermometer__scale-item:first-child {
+    text-align: start;
+  }
+  .thermometer__scale-item:last-child {
+    text-align: end;
   }
   .thermometer__progress {
     background-color: #E7E7EB;
     height: 8px;
     width: 229px;
-    margin: auto;
     border-radius: 80px;
     overflow: hidden;
   }
@@ -94,10 +102,7 @@ export default {
     background-color: #FFEC65;
   }  
   .thermometer__unit {
-    text-align: end;    
-    font-weight: 700;
-    font-size:12px;
-    color:#A09FB1;
+    float: right;  
     padding-top:2px;
   }
 </style>

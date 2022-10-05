@@ -1,15 +1,16 @@
 <template>
-  <article class="card-hightlight">
-    <header class="card-hightlight__header">
-      {{ title }}
+  <article class="hightlight-card">
+    <header>
+      <h2 class="hightlight-card__title">
+        {{ title }}
+      </h2>
     </header>
-    <main class="card-hightlight__body">
-      {{ valueRounded }}<span class="card-hightlight__measure">{{ valueMeasure }}</span>      
+    <main class="hightlight-card__main">
+      <h3 class="hightlight-card__value">
+        {{ valueRounded }}<span class="hightlight-card__unit-value">{{ valueMeasure }}</span>
+      </h3>           
     </main>
-    <footer
-      v-show="showFooter"
-      class="card-hightlight__footer"
-    >
+    <footer class="hightlight-card__footer">
       <slot />
     </footer>
   </article>
@@ -28,17 +29,13 @@ export default {
       default:0,
       type: Number
     },
-    valueRound:{
+    decimal:{
       default:0,
       type: Number
     },
     valueMeasure:{
       default:'',
       type:String
-    },
-    showFooter:{
-      default:false,
-      type:Boolean
     }
   },
   data(){
@@ -53,45 +50,36 @@ export default {
   },
   computed:{
     valueRounded(){
-      return parseFloat(this.valueAnimated).toFixed(this.valueRound).toString();
+      return parseFloat(this.valueAnimated).toFixed(this.decimal).toString();
     }
   }
 }
 </script>
 
 <style scoped>
-  p {
-    margin: 0;
-  }
-  .card-hightlight {
-    width: 328px;
-    height: auto;
+  .hightlight-card {
     background-color: #1E213A;
     color:#E7E7EB;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    gap:6px;
-    padding: 22px 0 38px 0;
+    align-items: center;
+    padding: 1.5em 0;
+    gap:.5rem;
   }
-  .card-hightlight__header {
+  .hightlight-card__title {
+    font-size:1rem;
     font-weight: 500;
-    font-size: 1rem;
+    margin:0;
   }
-  .card-hightlight__body {
-    font-weight: 700;
-    font-size:64px;
-    font-style: normal;
-    line-height: 75.14px;
+  .hightlight-card__main{
+    flex-grow:1;
   }
-  .card-hightlight__measure {
-    font-weight: 500;
-    font-size:36px;
-    line-height: 42.26px;
-    margin: 0;
+  .hightlight-card__value {
+    font-size: 4rem;
+    margin:0;
   }
-  .card-hightlight__footer {
-    height: 38px;
-    padding-top:20px;
+  .hightlight-card__unit-value {
+    font-size: 2.5rem;
+    font-weight: 400;    
   }
 </style>

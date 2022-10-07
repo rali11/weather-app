@@ -63,6 +63,6 @@ export default {
   .hightlights__title {
     color:#E7E7EB;
     grid-column: 1 / -1;
-    margin-bottom:-1rem;
+    margin-bottom: -1rem;
   }
 </style>

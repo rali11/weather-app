@@ -109,7 +109,7 @@ export default {
     padding: 0;
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 1rem;
     list-style: none;
   }  
   .forecast-card--muted {

@@ -1,24 +1,28 @@
-:root {  
-  --side-bar-width:459px;  
-  --main-container-width:700px;
-}
-
+/* Mobile */
 @media (max-width: 575.98px) {  
   :root {  
-    --side-bar-width:100vw;
-    --main-container-width:320px;
+    --side-bar:100vw;
+    --main-container:320px;
   }
 }
-
+/*Tablets*/
 @media (min-width: 576px) and (max-width: 778.98px) {
   :root {
-    --side-bar-width:100vw;    
-    --main-container-width:420px;
+    --side-bar:100vw;    
+    --main-container:420px;
   }
 }
-
+/*Laptops*/
 @media (min-width:779px) and (max-width: 1091.98px) {
   :root {
-    --main-container-width:auto;
+    --side-bar:459px;  
+    --main-container:auto;
   }
 } 
+/*Dektop and more*/
+@media (min-width:1092px) {
+  :root {  
+    --side-bar:459px;  
+    --main-container:688.96px;
+  }
+}

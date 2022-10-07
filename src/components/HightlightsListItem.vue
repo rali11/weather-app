@@ -63,7 +63,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5em 0;
+    padding: 1.5rem 0;
     gap:.5rem;
   }
   .hightlight-card__title {

@@ -1,8 +1,11 @@
 <template>
   <div id="app">   
-    <aside class="side-bar">
-      <h1>sidebar</h1>
-    </aside>    
+    <the-sidebar-weather 
+      temperature="25"
+      temperature-description="Shower"
+      :image="image"
+      location="Buenos Aires"
+    />
     <the-main />
   </div>
 </template>
@@ -12,13 +15,17 @@
 import './assets/main.css';
 import './assets/reset.css';
 import TheMain from './components/TheMain.vue';
+import TheSidebarWeather from './components/TheSidebarWeather.vue';
+import LightCloud from '../src/assets/img/LightCloud.png';
 
 
 export default {
-  components: { TheMain },
+  components: { TheMain, TheSidebarWeather },
   name: 'App',  
   data(){
-    return {}
+    return {
+      image:LightCloud,
+    }
   }
 }
 </script>
@@ -32,12 +39,5 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;    
     height: 100vh;
-  }
-  .side-bar {
-    width: var(--side-bar);
-    background-color:#1E213A;
-    height: 100%;
-  }
-  
-  
+  }  
 </style>

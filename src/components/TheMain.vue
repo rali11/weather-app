@@ -1,6 +1,7 @@
 <template>
   <main class="main">
     <div class="main__container">
+      <base-radio-button />
       <my-list-card-forecast />           
       <the-hightlights-list />  
       <footer class="main__footer">
@@ -19,15 +20,16 @@
 </template>
 
 <script>
-  import MyListCardForecast from './TheForecastList.vue';
-  import TheHightlightsList from './TheHightlightsList.vue';
+import BaseRadioButton from './BaseRadioButton.vue';
+import MyListCardForecast from './TheForecastList.vue';
+import TheHightlightsList from './TheHightlightsList.vue';
 
   export default {
     components: {
       MyListCardForecast,
       TheHightlightsList,
-    },
-    
+      BaseRadioButton,
+    },    
   }
 </script>
 

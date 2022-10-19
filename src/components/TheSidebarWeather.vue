@@ -122,7 +122,7 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 3rem;
  }
  .card-aside__body {
   display: flex;

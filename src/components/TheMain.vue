@@ -1,8 +1,8 @@
 <template>
   <main class="main">
     <div class="main__container">
-      <base-radio-button />
-      <my-list-card-forecast />           
+      <temperature-measure-radio-button v-model="celsiusMeasure" />
+      <the-forecast-list />           
       <the-hightlights-list />  
       <footer class="main__footer">
         created by 
@@ -20,16 +20,21 @@
 </template>
 
 <script>
-import BaseRadioButton from './BaseRadioButton.vue';
-import MyListCardForecast from './TheForecastList.vue';
+import TemperatureMeasureRadioButton from './TemperatureMeasureRadioButton.vue';
+import TheForecastList from './TheForecastList.vue';
 import TheHightlightsList from './TheHightlightsList.vue';
 
   export default {
     components: {
-      MyListCardForecast,
+      TheForecastList,
       TheHightlightsList,
-      BaseRadioButton,
+      TemperatureMeasureRadioButton,
     },    
+    data(){
+      return {
+        celsiusMeasure:true,
+      }
+    }
   }
 </script>
 
@@ -48,7 +53,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
     display: flex;
     height: 100%;
     flex-direction: column;
-    gap:5rem;    
+    gap:4rem;    
   }  
   .main__footer {
     text-align: center;
@@ -56,7 +61,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
   }
   .main__link-footer,
   .main__link-footer:visited,  
-  .main__link-footer:active{
+  .main__link-footer:active {
     color:#A09FB1;
     font-weight: 700;
   }

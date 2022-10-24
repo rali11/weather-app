@@ -25,6 +25,15 @@
   background-color: #5d6170;  
 }
 
+.button--primary {    
+  color:#E7E7EB;        
+  background-color: #3C47E9;;    
+}
+
+.button--primary:hover {
+  background-color: #272e96;  
+}
+
 .button--rounded {
   height: fit-content;
   border-radius: 100%;        

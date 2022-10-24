@@ -1,11 +1,6 @@
 <template>
   <div id="app">   
-    <the-sidebar-weather 
-      temperature="25"
-      temperature-description="Shower"
-      :image="image"
-      location="Buenos Aires"
-    />
+    <the-sidebar />
     <the-main />
   </div>
 </template>
@@ -15,16 +10,13 @@
 import './assets/main.css';
 import './assets/reset.css';
 import TheMain from './components/TheMain.vue';
-import TheSidebarWeather from './components/TheSidebarWeather.vue';
-import LightCloud from '../src/assets/img/LightCloud.png';
-
+import TheSidebar from './components/TheSidebar.vue';
 
 export default {
-  components: { TheMain, TheSidebarWeather },
+  components: { TheMain, TheSidebar },
   name: 'App',  
   data(){
     return {
-      image:LightCloud,
     }
   }
 }

@@ -1,9 +1,7 @@
 <template>
   <button 
-    v-bind="$attrs"
     @mousedown="mousedownTrigger"
-    class="button button--secondary"
-    @click="$emit('click')"
+    class="button button--primary"
   >
     <slot />
     <span 
@@ -13,12 +11,13 @@
   </button>
 </template>
 
-<script>
-import '../assets/css/button.css';
-import Tween from '@tweenjs/tween.js';
 
-export default {
-  inheritAttrs:false,
+<script>
+  import '../assets/css/button.css'; 
+  import Tween from '@tweenjs/tween.js';
+
+  export default {
+    inheritAttrs:true,
   data(){
     return {
       showRipple:false,
@@ -34,9 +33,6 @@ export default {
     this.$el.addEventListener('mousemove',this.trackCursor);
   },
   methods:{
-    showHola(){
-      console.log('hola')
-    },
     mousedownTrigger(){           
       this.$el.removeEventListener('mousemove',this.trackCursor);
       this.styleCss.opacity = .8;
@@ -70,16 +66,15 @@ export default {
       };
     }
   }
-}
+  }
 </script>
-
 
 <style scoped>
   .ripple {
     height: 25px;
     width: 25px;;
     border-radius:50%;
-    background-color: #404147;
+    background-color: #3C47E9;
     position: absolute;
   }
 </style>

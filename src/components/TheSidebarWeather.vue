@@ -1,9 +1,11 @@
 <template>
-  <aside class="card-aside">        
+  <section class="card-aside">        
     <div class="card-aside__content">
       <header class="card-aside__header">
-        <base-secondary-button>
-          Search for places
+        <base-secondary-button 
+          @click="$emit('open-search')"
+        >
+          Search for places 
         </base-secondary-button>
         <base-fab-button>
           <span class="material-icons">
@@ -41,7 +43,7 @@
       </footer>
     </div>    
     <div class="card-aside__background" /> 
-  </aside>
+  </section>
 </template>
 
 <script>
@@ -88,7 +90,7 @@ export default {
 <style scoped>
  .card-aside {
   position: relative;
-  width: var(--side-bar);
+  width:100%;
   height: 100%;
   background-color:#1E213A;    
   overflow: auto;

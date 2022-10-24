@@ -2,8 +2,10 @@
   <section class="card-aside">        
     <div class="card-aside__content">
       <header class="card-aside__header">
-        <base-secondary-button>
-          Search for places
+        <base-secondary-button 
+          @click="$emit('open-search')"
+        >
+          Search for places 
         </base-secondary-button>
         <base-fab-button>
           <span class="material-icons">

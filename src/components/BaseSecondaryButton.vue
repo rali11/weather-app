@@ -1,7 +1,9 @@
 <template>
   <button 
+    v-bind="$attrs"
     @mousedown="mousedownTrigger"
     class="button button--secondary"
+    @click="$emit('click')"
   >
     <slot />
     <span 
@@ -16,7 +18,7 @@ import '../assets/css/button.css';
 import Tween from '@tweenjs/tween.js';
 
 export default {
-  inheritAttrs:true,
+  inheritAttrs:false,
   data(){
     return {
       showRipple:false,
@@ -32,6 +34,9 @@ export default {
     this.$el.addEventListener('mousemove',this.trackCursor);
   },
   methods:{
+    showHola(){
+      console.log('hola')
+    },
     mousedownTrigger(){           
       this.$el.removeEventListener('mousemove',this.trackCursor);
       this.styleCss.opacity = .8;

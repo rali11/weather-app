@@ -1,9 +1,9 @@
 <template>
-  <nav :class="['sidebar-navigation',hideNavbar ? 'sidebar-navigation--hide':''] ">    
+  <nav :class="['sidebar-navigation',value ? 'sidebar-navigation--hide':''] ">    
     <header class="sidebar-navigation__search">            
       <button 
         class="sidebar-navigation__close-button"
-        @click="hideNavbar = !hideNavbar"
+        @click="$emit('change', true)"
       >
         <span class="material-icons">
           close
@@ -28,6 +28,16 @@ import BaseListSearch from './BaseListSearch.vue'
 import BasePrimaryButton from './BasePrimaryButton.vue'
 import BaseSearchInput from './BaseSearchInput.vue'
   export default {
+    model:{
+      prop:'value',
+      event:'change',
+    },
+    props:{
+      value:{
+        default: true,
+        type: Boolean,
+      }
+    },
     components: { BasePrimaryButton, BaseSearchInput, BaseListSearch },
     data(){
       return {
@@ -38,7 +48,6 @@ import BaseSearchInput from './BaseSearchInput.vue'
           {id:3, city:'Long Beach'},
         ],
         selectedCity:'',
-        hideNavbar:true,
       }
     }
   }

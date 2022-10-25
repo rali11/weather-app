@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main :class="['main', !hideBackdrop ? 'main--no-scroll':'']">
     <div class="main__container">
       <temperature-measure-radio-button v-model="celsiusMeasure" />
       <the-forecast-list />           
@@ -15,7 +15,8 @@
         </a>
         - devChallenges.io
       </footer>
-    </div>      
+    </div> 
+    <div :class="['main__backdrop', hideBackdrop ? 'main__backdrop--hide' : '']" />     
   </main>    
 </template>
 
@@ -29,8 +30,18 @@ import TheHightlightsList from './TheHightlightsList.vue';
       TheForecastList,
       TheHightlightsList,
       TemperatureMeasureRadioButton,
-    },    
-    data(){
+    },   
+    model:{
+      prop:'hideBackdrop',
+      event:'hide-backdrop'
+    },
+    props:{
+      hideBackdrop:{
+        default:true,
+        type:Boolean
+      }
+    },
+    data(){      
       return {
         celsiusMeasure:true,
       }
@@ -46,6 +57,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
     height: 100%;
     max-width: 100%;
     overflow:auto;
+    position: relative;
   }
   .main__container {  
     max-width: var(--main-container);
@@ -64,5 +76,24 @@ import TheHightlightsList from './TheHightlightsList.vue';
   .main__link-footer:active {
     color:#A09FB1;
     font-weight: 700;
+  }
+  .main__backdrop {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: #100E1D;
+    opacity: .7;
+    transition: all .3s;
+  }
+  .main__backdrop--hide {
+    opacity: 0;
+    z-index: -1;
+    transition: all .3s;
+  }
+  .main--no-scroll {
+    overflow: hidden;
   }
 </style>

@@ -7,7 +7,7 @@
       :image="image"
       @open-search="openSearch"
     />        
-    <the-sidebar-navigation v-model="hideSidebar" />
+    <the-sidebar-navigation v-model="hidesidebar" />
   </aside>
 </template>
 
@@ -18,15 +18,34 @@
 
   export default {
     components: { TheSidebarWeather, TheSidebarNavigation },
+    model:{
+      prop:'hideSidebar',
+      event:'hide-sidebar'
+    },
+    props:{
+      hideSidebar:{
+        default:true,
+        type:Boolean
+      }
+    },
     data(){
       return {
         image:LightCloud,
-        hideSidebar:true,
+        hidesidebar:true,
+      }
+    },
+    watch:{
+      hideSidebar(newVal){
+        this.hidesidebar = newVal;
+      },
+      hidesidebar(newVal){
+        this.$emit('hide-sidebar', newVal);
       }
     },
     methods:{
       openSearch(){
-        this.hideSidebar = !this.hideSidebar;
+        this.hidesidebar = !this.hidesidebar;
+        this.$emit('hide-sidebar', this.hidesidebar);
       }
     }
   }

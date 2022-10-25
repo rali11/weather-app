@@ -1,7 +1,10 @@
 <template>
-  <div id="app">   
-    <the-sidebar />
-    <the-main />
+  <div 
+    id="app" 
+    :class="[!hideSidebar ? 'no-scroll' : '']"
+  >   
+    <the-sidebar v-model="hideSidebar" />
+    <the-main v-model="hideBackdrop" />
   </div>
 </template>
 
@@ -17,6 +20,13 @@ export default {
   name: 'App',  
   data(){
     return {
+      hideBackdrop:true,
+      hideSidebar:true,
+    }
+  },
+  watch:{
+    hideSidebar(newVal){
+      this.hideBackdrop = newVal;
     }
   }
 }
@@ -32,4 +42,7 @@ export default {
     flex-wrap: wrap;    
     height: 100vh;
   }  
+  .no-scroll {
+    overflow: hidden;
+  }
 </style>

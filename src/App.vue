@@ -17,7 +17,7 @@ import TheSidebar from './components/TheSidebar.vue';
 
 export default {
   components: { TheMain, TheSidebar },
-  name: 'App',  
+  name: 'App',    
   data(){
     return {
       hideBackdrop:true,

@@ -27,6 +27,7 @@
 import BaseListSearch from './BaseListSearch.vue'
 import BasePrimaryButton from './BasePrimaryButton.vue'
 import BaseSearchInput from './BaseSearchInput.vue'
+
   export default {
     model:{
       prop:'value',
@@ -38,7 +39,11 @@ import BaseSearchInput from './BaseSearchInput.vue'
         type: Boolean,
       }
     },
-    components: { BasePrimaryButton, BaseSearchInput, BaseListSearch },
+    components: { 
+      BasePrimaryButton, 
+      BaseSearchInput, 
+      BaseListSearch 
+    },
     data(){
       return {
         searchInput:'',
@@ -49,7 +54,7 @@ import BaseSearchInput from './BaseSearchInput.vue'
         ],
         selectedCity:'',
       }
-    }
+    },
   }
 </script>
 

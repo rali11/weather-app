@@ -131,6 +131,11 @@ export default {
   flex-direction: column;
   gap: 3.5rem;
  }
+ .card-aside__picture {
+  width: 221px;
+  height: 206px;
+  margin: auto;
+ }
  .card-aside__temperature-value {
   font-size: 9rem;
   font-weight: 300;

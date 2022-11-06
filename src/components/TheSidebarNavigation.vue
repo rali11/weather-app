@@ -10,7 +10,7 @@
         </span>
       </button>
       <base-search-input v-model="searchInput" />      
-      <base-primary-button>
+      <base-primary-button @click="getCities">
         Search
       </base-primary-button>
     </header>
@@ -27,6 +27,7 @@
 import BaseListSearch from './BaseListSearch.vue'
 import BasePrimaryButton from './BasePrimaryButton.vue'
 import BaseSearchInput from './BaseSearchInput.vue'
+import GetCityCoordinates from '../api/geocoding';
 
   export default {
     model:{
@@ -47,14 +48,26 @@ import BaseSearchInput from './BaseSearchInput.vue'
     data(){
       return {
         searchInput:'',
-        listCity:[
-          {id:1, city:'London'},
-          {id:2, city:'Barcelona'},
-          {id:3, city:'Long Beach'},
-        ],
-        selectedCity:'',
+        listCity:[],
+        selectedCity:{},
       }
     },
+    watch:{
+      selectedCity(newVal){
+        const {latitude, longitude} = newVal;
+        this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+      }
+    },
+    methods:{
+      async getCities(){
+        try {
+          this.listCity = await GetCityCoordinates(this.searchInput);   
+          this.searchInput = '';  
+        } catch (error) {
+          console.log(error);
+        }   
+      }
+    }
   }
 </script>
 

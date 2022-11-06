@@ -39,6 +39,7 @@ export default {
       windDirection:currentWeather.data[0]['wind_cdir'],
       windDirectionDegrees:currentWeather.data[0]['wind_dir'],
       weatherDescription:currentWeather.data[0]['weather']['description'],
+      cityName:currentWeather.data[0]['city_name'],
     }
   }
 }

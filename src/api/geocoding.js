@@ -4,7 +4,7 @@ const options = {
   }
 };
 
-export const getCityCoordinates = async cityName => {  
+export default async cityName => {  
   const response = await fetch (`https://api.api-ninjas.com/v1/geocoding?city=${cityName}`, options);
   if (!response.ok) throw new Error(response.statusText);
   const json = await response.json();

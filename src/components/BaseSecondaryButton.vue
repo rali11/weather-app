@@ -1,9 +1,9 @@
 <template>
   <button 
     v-bind="$attrs"
-    @mousedown="mousedownTrigger"
-    class="button button--secondary"
+    @mousedown="mousedownTrigger"    
     @click="$emit('click')"
+    class="button button--secondary"
   >
     <slot />
     <span 
@@ -34,9 +34,6 @@ export default {
     this.$el.addEventListener('mousemove',this.trackCursor);
   },
   methods:{
-    showHola(){
-      console.log('hola')
-    },
     mousedownTrigger(){           
       this.$el.removeEventListener('mousemove',this.trackCursor);
       this.styleCss.opacity = .8;

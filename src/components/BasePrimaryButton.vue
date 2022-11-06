@@ -1,6 +1,7 @@
 <template>
   <button 
     @mousedown="mousedownTrigger"
+    @click="$emit('click')"
     class="button button--primary"
   >
     <slot />

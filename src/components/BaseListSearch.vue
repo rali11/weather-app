@@ -3,10 +3,10 @@
     <li 
       v-for="(item, index) in listData"
       :key="index"
-      @click="$emit('change',item.id.toString(10))"
+      @click="$emit('change',item)"
       class="search-list__item"
     >
-      {{ item.city }}
+      {{ item.name }}
     </li>    
   </ul>
 </template>
@@ -25,8 +25,8 @@
         type:Array,
       },
       value:{
-        default:'',
-        type:String,
+        default:() => {},
+        type:Object,
       }
     }
   }

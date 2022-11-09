@@ -54,8 +54,8 @@ export default {
   components: { BaseSecondaryButton, BaseFabButton },
   props:{
     temperature:{
-      default:'',
-      type:String
+      default:0,
+      type:Number
     },
     temperatureDescription:{
       default:'',

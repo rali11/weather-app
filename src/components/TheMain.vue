@@ -52,7 +52,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
 <style scoped>
   .main {
     flex-grow: 1;
-    padding:3rem 0;
+    padding:1rem 0;
     background-color:#100E1D;    
     height: 100%;
     max-width: 100%;
@@ -70,6 +70,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
   .main__footer {
     text-align: center;
     color:#A09FB1;
+    margin-top:-1rem;
   }
   .main__link-footer,
   .main__link-footer:visited,  

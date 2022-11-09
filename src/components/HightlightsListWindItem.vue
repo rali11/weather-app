@@ -2,7 +2,7 @@
   <hightlights-list-item 
     title="Wind status"
     :value="value"
-    value-measure="mph"
+    value-measure=" m/s"
   >
     <div class="wind-footer">
       <span 
@@ -11,7 +11,7 @@
       >
         navigation
       </span>
-      WSW
+      {{ windDirection }}
     </div>
   </hightlights-list-item>
 </template>
@@ -30,6 +30,10 @@ export default {
     deg:{
       default:0,
       type:Number
+    },
+    windDirection:{
+      default:'',
+      type: String
     }
   },
   data(){

@@ -1,9 +1,9 @@
 <template>
   <aside class="sidebar">    
     <the-sidebar-weather 
-      temperature="25"
-      location="Buenos Aires"
-      temperature-description="Shower"  
+      :temperature="currentWeather.currentTemperature"
+      :location="currentWeather.cityName"
+      :temperature-description="currentWeather.weatherDescription"  
       :image="image"
       @open-search="openSearch"
     />        
@@ -15,6 +15,7 @@
   import TheSidebarNavigation from './TheSidebarNavigation.vue';
   import TheSidebarWeather from './TheSidebarWeather.vue';
   import LightCloud from '../assets/img/LightCloud.png';
+  import {mapGetters} from  'vuex';
 
   export default {
     components: { TheSidebarWeather, TheSidebarNavigation },
@@ -33,6 +34,11 @@
         image:LightCloud,
         hidesidebar:true,
       }
+    },
+    computed:{      
+      ...mapGetters([
+        'currentWeather',
+      ]),
     },
     watch:{
       hideSidebar(newVal){

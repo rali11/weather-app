@@ -54,8 +54,8 @@ export default {
   components: { BaseSecondaryButton, BaseFabButton },
   props:{
     temperature:{
-      default:'',
-      type:String
+      default:0,
+      type:Number
     },
     temperatureDescription:{
       default:'',
@@ -130,6 +130,11 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
+ }
+ .card-aside__picture {
+  width: 221px;
+  height: 206px;
+  margin: auto;
  }
  .card-aside__temperature-value {
   font-size: 9rem;

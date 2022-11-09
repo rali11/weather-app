@@ -5,35 +5,37 @@
     </h2>        
     <hightlights-list-wind-item 
       :deg="degWind"
-      :value="wind"
+      :value="currentWeather.windSpeed"
+      :wind-direction="currentWeather.windDirection"
     />
     <hightlights-list-item 
       title="Humidity"
-      :value="humidity"
+      :value="currentWeather.humidity"
       value-measure="%"
     >
       <base-thermometer-progress-bar 
-        :percent="humidity"
+        :percent="currentWeather.humidity"
       />
     </hightlights-list-item>
     <hightlights-list-item
       title="Visibility"
-      :value="visibility"
+      :value="currentWeather.visibility"
       :decimal="1"
-      value-measure=" miles" 
+      value-measure=" km" 
     />
     <hightlights-list-item
       title="Air Pressure"
-      :value="airPressure"
+      :value="currentWeather.airPressure"
       value-measure=" mb" 
     />
   </section>
 </template>
 
 <script>
-import BaseThermometerProgressBar from './BaseThermometerProgressBar.vue'
-import HightlightsListItem from './HightlightsListItem.vue'
-import HightlightsListWindItem from './HightlightsListWindItem.vue'
+import BaseThermometerProgressBar from './BaseThermometerProgressBar.vue';
+import HightlightsListItem from './HightlightsListItem.vue';
+import HightlightsListWindItem from './HightlightsListWindItem.vue';
+import {mapGetters} from  'vuex';
 
 export default {
   components: {
@@ -47,9 +49,16 @@ export default {
       wind:7,
       visibility:6.4,
       airPressure:998,
-      degWind:-150,
     }
   },
+  computed:{
+    ...mapGetters([
+        'currentWeather',
+      ]),
+      degWind(){
+        return 90 - this.currentWeather.windDirectionDegrees;
+      }
+  }
 }
 </script>
 

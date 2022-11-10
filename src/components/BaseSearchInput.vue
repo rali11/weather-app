@@ -1,5 +1,5 @@
 <template>
-  <div class="input-container">
+  <div :class="['input-container',loading ? 'input-container--loading':'']">
     <input 
       type="text" 
       class="input-search"
@@ -21,6 +21,10 @@
       value:{
         default:'',
         type:String,
+      },
+      loading:{
+        default:false,
+        type:Boolean
       }
     }
   }
@@ -32,7 +36,20 @@
     gap:0;
     position: relative;
   }
-  .input-container::before {
+  .input-container--loading::before {
+    content: "\e863";
+    font-family: "Material Icons";
+    display: flex;
+    align-items: center;
+    top:0;
+    left:.8rem;
+    position: absolute;
+    font-size: 1.5rem;
+    height: 100%;
+    color:#616475;
+    animation: lds-dual-ring .8s linear infinite;
+  }
+  .input-container:not(.input-container--loading)::before {
     content: '\e8b6';
     font-family: "Material Icons";
     position: absolute;
@@ -57,4 +74,14 @@
     padding-bottom:1rem;
     width: 100%;
   }
+
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 </style>

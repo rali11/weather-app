@@ -9,16 +9,27 @@
           close
         </span>
       </button>
-      <base-search-input v-model="searchInput" />      
+      <base-search-input 
+        v-model="searchInput"
+        :loading="searchLoading"
+      />      
       <base-primary-button @click="getCities">
         Search
       </base-primary-button>
     </header>
     <main>
       <base-list-search 
+        v-if="listCity.length > 0"
         v-model="selectedCity"
         :list-data="listCity"
+        :loading="loadingWeather"
       />
+      <h3 
+        v-else
+        class="no-results"
+      >
+        No results
+      </h3>
     </main>
   </nav>
 </template>
@@ -50,22 +61,31 @@ import GetCityCoordinates from '../api/geocoding';
         searchInput:'',
         listCity:[],
         selectedCity:{},
+        searchLoading:false,
+        loadingWeather:false,
       }
     },
     watch:{
       selectedCity(newVal){
         const {latitude, longitude} = newVal;
-        this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+        this.getCurrentWeather(latitude, longitude);
       }
     },
     methods:{
       async getCities(){
         try {
-          this.listCity = await GetCityCoordinates(this.searchInput);   
-          this.searchInput = '';  
+          this.searchLoading = !this.searchLoading;
+          this.listCity = await GetCityCoordinates(this.searchInput);            
         } catch (error) {
           console.log(error);
-        }   
+        }  finally {
+           this.searchLoading = !this.searchLoading;  
+        }
+      },
+      async getCurrentWeather(latitude, longitude){
+        this.loadingWeather = !this.loadingWeather;
+        await this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+        this.loadingWeather = !this.loadingWeather;
       }
     }
   }
@@ -107,5 +127,10 @@ import GetCityCoordinates from '../api/geocoding';
   }
   .sidebar-navigation__close-button > .material-icons {
     font-size: 2rem;
+  }
+  .no-results {
+    width: 100%;
+    text-align: center;
+    color:#E7E7EB;
   }
 </style>

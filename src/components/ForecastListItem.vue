@@ -30,13 +30,13 @@ export default {
       default:()=>{},
       type:Date
     },
-    temperatureCelsius:{
-      default:()=>{},
-      type:Object
+    maxTemperature:{
+      default:0,
+      type:Number,
     },
-    temperatureFarenheit:{
-      default:()=>{},
-      type:Object
+    minTemperature: {
+      default: 0,
+      type:Number,
     },
     showCelsius: {
       default:true,
@@ -54,13 +54,7 @@ export default {
   computed:{
     measureTemp(){
       return this.showCelsius ? 'C' : 'F';
-    },
-    maxTemperature(){
-      return this.showCelsius ? this.temperatureCelsius.max : this.tempFarenheit.max;
-    },
-    minTemperature(){
-      return this.showCelsius ? this.temperatureCelsius.min : this.tempFarenheit.min;
-    },
+    },    
     maxTemperatureFormat(){
       return `${this.maxTemperature}°${this.measureTemp}`;
     },

@@ -1,10 +1,11 @@
 <template>
   <section class="forecast">
     <forecast-list-item
-      v-for="(item, index) in forecastWeather"
+      v-for="(item, index) in forecast5Days"
       :key="index"
       :date="item.date"
-      :temperature-celsius="item.temp"
+      :min-temperature="item.minTemperature"
+      :max-temperature="item.maxTemperature"
       :show-celsius="showCelsius"
       :image="image"
     />    
@@ -14,6 +15,7 @@
 <script>
 import ForecastListItem from './ForecastListItem.vue';
 import LightCloud from '../assets/img/LightCloud.png';
+import {mapGetters} from  'vuex';
 
 export default {
   components: {
@@ -23,14 +25,12 @@ export default {
     return {
       image:LightCloud,
       showCelsius:true,
-      forecastWeather:[
-        {date: new Date(), temp: {max:'16', min:'11'} },
-        {date: new Date(), temp: {max:'22', min:'11'} },
-        {date: new Date(), temp: {max:'16', min:'11'} },
-        {date: new Date(), temp: {max:'16', min:'11'} },
-        {date: new Date(), temp: {max:'16', min:'11'} },
-      ]
     };
+  },
+  computed:{
+    ...mapGetters([
+        'forecast5Days',
+      ]),
   }
 }
 </script>

@@ -24,7 +24,7 @@ export default {
       return {
         maxTemperature:day['app_max_temp'],
         minTemperature:day['app_min_temp'],
-        date:new Date(day['datetime'])
+        date:new Date(`${day['datetime']}T00:00:00`),
       }
     });
   },

@@ -68,7 +68,7 @@ import GetCityCoordinates from '../api/geocoding';
     watch:{
       selectedCity(newVal){
         const {latitude, longitude} = newVal;
-        this.getCurrentWeather(latitude, longitude);
+        this.getWeather(latitude, longitude);
       }
     },
     methods:{
@@ -82,10 +82,16 @@ import GetCityCoordinates from '../api/geocoding';
            this.searchLoading = !this.searchLoading;  
         }
       },
-      async getCurrentWeather(latitude, longitude){
-        this.loadingWeather = !this.loadingWeather;
-        await this.$store.dispatch('getCurrentWeather', {latitude, longitude});
-        this.loadingWeather = !this.loadingWeather;
+      async getWeather(latitude, longitude){
+        try {
+          this.loadingWeather = !this.loadingWeather;
+          await this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+          await this.$store.dispatch('getForecast', {latitude, longitude});
+          this.loadingWeather = !this.loadingWeather;    
+          this.$emit('change', true)      
+        } catch (error) {
+          console.log(error);
+        } 
       }
     }
   }

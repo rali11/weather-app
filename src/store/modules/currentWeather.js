@@ -5,7 +5,12 @@ const state = () => ({
 });
 
 const getters = {
-  currentWeather(state){
+  currentWeather(state, getters, rootState){
+    if (!rootState.isCelsius){
+      const farenheitMeasure = {...state.currentWeather};      
+      farenheitMeasure.currentTemperature = parseFloat(((farenheitMeasure.currentTemperature*1.8)+32).toFixed(2));
+      return farenheitMeasure;
+    }
     return state.currentWeather;
   }
 };
@@ -24,7 +29,7 @@ const actions = {
 const mutations = {
   setCurrentWeather(state, currentWeather){
     state.currentWeather = currentWeather;
-  }
+  },
 };
 
 export default {

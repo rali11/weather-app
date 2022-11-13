@@ -6,7 +6,7 @@
       @click="eventClick($event.target, item)"
       class="search-list__item"
     >
-      {{ item.name }}
+      {{ item.name }}, {{ item.state }}, {{ item.country }}
     </li>    
   </ul>
 </template>

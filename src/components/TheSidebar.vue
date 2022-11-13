@@ -5,6 +5,7 @@
       :location="currentWeather.cityName"
       :temperature-description="currentWeather.weatherDescription"  
       :image="image"
+      :measure="temperatureMeasure"
       @open-search="openSearch"
     />        
     <the-sidebar-navigation v-model="hidesidebar" />
@@ -38,6 +39,7 @@
     computed:{      
       ...mapGetters([
         'currentWeather',
+        'temperatureMeasure',
       ]),
     },
     watch:{

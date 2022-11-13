@@ -45,6 +45,11 @@ import TheHightlightsList from './TheHightlightsList.vue';
       return {
         celsiusMeasure:true,
       }
+    },
+    watch:{
+      celsiusMeasure(newVal){
+        this.$store.commit('setCelsiusMeasure', newVal);
+      }
     }
   }
 </script>

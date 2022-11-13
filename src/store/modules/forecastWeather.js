@@ -1,19 +1,27 @@
-import WeatherApi from '../../api/weatherbit.js';
+import rapidApi from '@/api/rapidApi.js';
 
 const state = () => ({
   forecast:[],
 })
 
 const getters = {
-  forecast5Days(state){
-    return state.forecast;
+  forecast5Days(state, getters, rootState){
+    return state.forecast.map(day => {
+      if (!rootState.isCelsius){
+        const dayFarenheit = {...day};
+        dayFarenheit.maxTemperature = parseFloat(((day.maxTemperature*1.8)+32).toFixed(1));
+        dayFarenheit.minTemperature = parseFloat(((day.minTemperature*1.8)+32).toFixed(1));
+        return dayFarenheit;
+      }
+      return day;
+    });
   }
 }
 
 const actions = {
   async getForecast({commit}, coordinates){
     try {
-      const forecast = await WeatherApi.getForecast5Days(coordinates);
+      const forecast = await rapidApi.getForecast5Days(coordinates);
       commit('setForecast', forecast);
     } catch (error) {
       console.log(error.message);

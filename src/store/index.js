@@ -8,6 +8,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules:{
     currentWeather,
-    forecast5Days,
+    forecast5Days
   },
+  state:{
+    isCelsius:true,
+  },
+  getters:{ 
+    temperatureMeasure(state){
+      return state.isCelsius ? 'C':'F';
+    }
+  },
+  mutations:{
+    setCelsiusMeasure(state, isCelsius){
+      state.isCelsius = isCelsius;
+    }
+  }
 });

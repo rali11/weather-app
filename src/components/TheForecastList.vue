@@ -6,7 +6,7 @@
       :date="item.date"
       :min-temperature="item.minTemperature"
       :max-temperature="item.maxTemperature"
-      :show-celsius="showCelsius"
+      :temperature-measure="temperatureMeasure"
       :image="image"
     />    
   </section>
@@ -30,6 +30,7 @@ export default {
   computed:{
     ...mapGetters([
         'forecast5Days',
+        'temperatureMeasure',
       ]),
   }
 }

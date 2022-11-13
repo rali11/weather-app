@@ -38,9 +38,9 @@ export default {
       default: 0,
       type:Number,
     },
-    showCelsius: {
-      default:true,
-      type:Boolean
+    temperatureMeasure: {
+      default:'C',
+      type:String
     },
     image: {
       default: '',
@@ -52,14 +52,11 @@ export default {
     }
   },
   computed:{
-    measureTemp(){
-      return this.showCelsius ? 'C' : 'F';
-    },    
     maxTemperatureFormat(){
-      return `${this.maxTemperature}°${this.measureTemp}`;
+      return `${this.maxTemperature}°${this.temperatureMeasure}`;
     },
     minTemperatureFormat(){
-      return `${this.minTemperature}°${this.measureTemp}`;
+      return `${this.minTemperature}°${this.temperatureMeasure}`;
     },
     longDate(){
       return this.date.toLocaleDateString('en-UK',{weekday:'short', day:'numeric', month:'short'});

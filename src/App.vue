@@ -4,6 +4,9 @@
     :class="[!hideSidebar || !hidePreloading ? 'no-scroll' : '']"
   >   
     <div :class="['preloading', hidePreloading ? 'preloading--hidden':''] ">
+      <span class="material-icons">
+        wb_cloudy
+      </span>
       <span class="icon-loading" />
     </div>
     <the-sidebar v-model="hideSidebar" />
@@ -25,12 +28,30 @@ export default {
     return {
       hideBackdrop:true,
       hideSidebar:true,
-      hidePreloading:true,
+      hidePreloading:false,
     }
+  },
+  mounted(){
+    this.getCurrentPosition();
   },
   watch:{
     hideSidebar(newVal){
       this.hideBackdrop = newVal;
+    }
+  },
+  methods:{
+    async getCurrentPosition(){
+      try {
+        const {latitude, longitude} = await this.$store.dispatch('getCurrentPosition');
+        await this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+        await this.$store.dispatch('getForecast', {latitude, longitude});        
+      } catch (error) {
+        const coordinates = {latitude:-34.603722, longitude: -58.381592};
+        await this.$store.dispatch('getCurrentWeather', coordinates);
+        await this.$store.dispatch('getForecast', coordinates);  
+      } finally {
+        this.hidePreloading = !this.hidePreloading;
+      }
     }
   }
 }
@@ -48,18 +69,19 @@ export default {
     position: relative;
   }  
   .no-scroll {
-    overflow: hidden;
+    overflow:hidden;
   }
-  .preloading {    
-    margin-left:calc(((100vw - 100%)/2)*-1);        
+  .preloading {     
     color:#E7E7EB;    
     position: absolute;
     top:0;
     left:0;
     background-color: #1E213A; 
-    width: 100vw;
+    max-width: 1440px;
+    min-width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center; 
     z-index:2;
@@ -72,13 +94,18 @@ export default {
     transition: all .5s;
   }
   .icon-loading {
+    margin-top:-3.7rem;
     animation: lds-dual-ring 1s linear infinite;
   }  
   .icon-loading::after {   
     content: "\e863";
     font-family: "Material Icons";  
     background-color: transparent;    
-    font-size: 5rem;    
+    font-size: 2rem;    
+    color:#1E213A;
+  }
+   .material-icons {
+    font-size:6rem;
   }
 
   @keyframes lds-dual-ring {

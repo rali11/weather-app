@@ -7,7 +7,9 @@
         >
           Search for places 
         </base-secondary-button>
-        <base-fab-button>
+        <base-fab-button
+          @click="getCurrentPosition"
+        >
           <span class="material-icons">
             my_location
           </span>
@@ -82,6 +84,17 @@ export default {
   computed:{
     longDate(){
       return this.date.toLocaleDateString('en-UK',{weekday:'short', day:'numeric', month:'short'});
+    }
+  },
+  methods:{
+    async getCurrentPosition(){
+      try {
+        const {latitude, longitude} = await this.$store.dispatch('getCurrentPosition');
+        await this.$store.dispatch('getCurrentWeather', {latitude, longitude});
+        await this.$store.dispatch('getForecast', {latitude, longitude});  
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

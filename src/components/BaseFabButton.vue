@@ -1,5 +1,8 @@
 <template>
-  <button class="button button--secondary button--rounded">
+  <button 
+    @click="$emit('click')"
+    class="button button--secondary button--rounded"
+  >
     <slot />
   </button>
 </template>

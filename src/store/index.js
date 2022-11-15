@@ -22,5 +22,15 @@ export default new Vuex.Store({
     setCelsiusMeasure(state, isCelsius){
       state.isCelsius = isCelsius;
     }
+  },
+  actions:{
+    getCurrentPosition(){
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          ({coords}) => { resolve(coords)}, 
+          error => { reject(error) }
+        );     
+      })
+    }
   }
 });

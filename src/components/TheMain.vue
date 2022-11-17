@@ -59,7 +59,7 @@ import TheHightlightsList from './TheHightlightsList.vue';
     flex-grow: 1;
     padding:1rem 0;
     background-color:#100E1D;    
-    height: 100%;
+    height: var(--main-height);
     max-width: 100%;
     overflow:auto;
     position: relative;

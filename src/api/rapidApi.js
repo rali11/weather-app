@@ -1,3 +1,5 @@
+import {GetIconWeather} from '../assets/weatherIcon';
+
 const rapidEndPoint = 'https://weatherbit-v1-mashape.p.rapidapi.com/';
 const headers = {
   'X-RapidAPI-Key': '6b934344eemsh553b59566aa3a68p1da75djsn004148fdb1fd',
@@ -28,6 +30,7 @@ export default {
         maxTemperature:day['app_max_temp'],
         minTemperature:day['app_min_temp'],
         date:new Date(`${day['datetime']}T00:00:00`),
+        weatherIconCode:GetIconWeather(day['weather']['code']),
       }
     });
   },
@@ -44,6 +47,7 @@ export default {
       windSpeed:currentWeather.data[0]['wind_spd'],
       weatherDescription:currentWeather.data[0]['weather']['description'],
       cityName:currentWeather.data[0]['city_name'],
+      weatherIconCode:GetIconWeather(currentWeather.data[0]['weather']['code']),
     }
   }
 }

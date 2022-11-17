@@ -7,14 +7,13 @@
       :min-temperature="item.minTemperature"
       :max-temperature="item.maxTemperature"
       :temperature-measure="temperatureMeasure"
-      :image="image"
+      :image="item.weatherIconCode"
     />    
   </section>
 </template>
 
 <script>
 import ForecastListItem from './ForecastListItem.vue';
-import LightCloud from '../assets/img/LightCloud.png';
 import {mapGetters} from  'vuex';
 
 export default {
@@ -23,7 +22,6 @@ export default {
   },
   data(){
     return {
-      image:LightCloud,
       showCelsius:true,
     };
   },

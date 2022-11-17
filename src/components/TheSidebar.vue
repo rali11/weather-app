@@ -4,7 +4,7 @@
       :temperature="currentWeather.currentTemperature"
       :location="currentWeather.cityName"
       :temperature-description="currentWeather.weatherDescription"  
-      :image="image"
+      :image="currentWeather.weatherIconCode"
       :measure="temperatureMeasure"
       @open-search="openSearch"
     />        
@@ -15,7 +15,6 @@
 <script>
   import TheSidebarNavigation from './TheSidebarNavigation.vue';
   import TheSidebarWeather from './TheSidebarWeather.vue';
-  import LightCloud from '../assets/img/LightCloud.png';
   import {mapGetters} from  'vuex';
 
   export default {
@@ -32,7 +31,6 @@
     },
     data(){
       return {
-        image:LightCloud,
         hidesidebar:true,
       }
     },

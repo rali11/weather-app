@@ -3,6 +3,7 @@
   :root {  
     --side-bar:100vw;
     --main-container:320px;
+    --main-height:auto;
   }
 }
 /*Tablets*/
@@ -10,6 +11,7 @@
   :root {
     --side-bar:100vw;    
     --main-container:420px;
+    --main-height:auto;
   }
 }
 /*Laptops*/
@@ -17,6 +19,7 @@
   :root {
     --side-bar:459px;  
     --main-container:auto;
+    --main-height:100%;
   }
 } 
 /*Dektop and more*/
@@ -24,5 +27,6 @@
   :root {  
     --side-bar:459px;  
     --main-container:688.96px;
+    --main-height:100%;
   }
 }
